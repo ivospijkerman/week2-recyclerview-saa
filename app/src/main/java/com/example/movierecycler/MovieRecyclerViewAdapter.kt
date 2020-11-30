@@ -16,7 +16,6 @@ class MovieRecyclerViewAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val titleText: TextView = view.findViewById(R.id.titleText)
-        val directorText: TextView = view.findViewById(R.id.directorText)
         var id: Int? = null
 
         init {
@@ -39,7 +38,6 @@ class MovieRecyclerViewAdapter(
 
         holder.id = movie.id
         holder.titleText.text = movie.title
-        holder.directorText.text = movie.director
     }
 
     override fun getItemCount(): Int = movies.size

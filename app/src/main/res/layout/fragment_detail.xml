@@ -3,21 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="movie"
             type="com.example.movierecycler.Movie" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
         tools:context=".DetailFragment">
 
-        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{movie.title}"
+            android:textSize="32sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@{movie.director}" />
+            android:layout_margin="16dp"
+            android:text="@{movie.director}"
+            android:textSize="16sp" />
 
-    </FrameLayout>
+
+    </LinearLayout>
 </layout>
