@@ -2,12 +2,11 @@ package com.example.movierecycler
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movierecycler.databinding.FragmentListBinding
 
@@ -17,6 +16,7 @@ import com.example.movierecycler.databinding.FragmentListBinding
  * create an instance of this fragment.
  */
 class ListFragment : Fragment() {
+    private val repository by lazy { MovieRepository(requireContext()) }
 
     private lateinit var binding: FragmentListBinding
 
@@ -24,26 +24,15 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
 
-        Log.i("", "onCreateView: ${Movie.getAll()}")
-        val adapter = MovieRecyclerViewAdapter(activity as MainActivity, Movie.getAll())
+        Log.i("", "onCreateView: ${repository.getAll()}")
+        val adapter = MovieRecyclerViewAdapter(activity as MainActivity, repository.getAll())
         binding.movieRecycler.setHasFixedSize(true)
         binding.movieRecycler.layoutManager = LinearLayoutManager(activity)
         binding.movieRecycler.adapter = adapter
-//        val adapter = ArrayAdapter(
-//            activity!!,
-//            android.R.layout.simple_list_item_1,
-//            Movie.getAll()
-//        )
-//        binding.movieList.adapter = adapter
-//        binding.movieList.setOnItemClickListener { _, _, position, _ ->
-//            val id = Movie.getAll()[position].id
-//            Log.i("", "onCreateView: $id")
-//            (activity as MainActivity).showDetail(id)
-//        }
 
         return binding.root
     }

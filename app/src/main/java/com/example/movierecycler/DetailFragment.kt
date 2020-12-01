@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.movierecycler.databinding.FragmentDetailBinding
-import java.lang.IllegalArgumentException
 
 private const val ARG_MOVIE_ID = "param1"
 
@@ -17,6 +16,8 @@ private const val ARG_MOVIE_ID = "param1"
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment() {
+    private val repository by lazy { MovieRepository(requireContext()) }
+
     private var movieId: Int? = null
     private lateinit var binding: FragmentDetailBinding
 
@@ -30,12 +31,12 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
 
         val id: Int = movieId ?: throw IllegalArgumentException()
-        binding.movie = Movie.getById(id)
+        binding.movie = repository.getById(id)
 
         return binding.root
     }
@@ -45,11 +46,8 @@ class DetailFragment : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment DetailFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(movieId: Int) =
             DetailFragment().apply {
