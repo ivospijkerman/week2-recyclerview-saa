@@ -1,13 +1,31 @@
 package com.example.movierecycler
 
-import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class MovieRepository(context: Context) {
-    private val movieDao = MovieDao(context)
+class MovieRepository(private val movieDao: MovieDao) {
+    private val defaultMovie = Movie(-1, "Loading...", "One moment please", -1)
 
-    fun getAll() = movieDao.getAll()
+    private val all: MutableLiveData<List<Movie>> =
+        MutableLiveData(listOf(defaultMovie))
 
-    fun getById(id: Int): Movie? {
-        return getAll().firstOrNull { movie -> movie.id == id }
+    fun getAll(): LiveData<List<Movie>> {
+        GlobalScope.launch {
+            delay(3000)
+            all.postValue(movieDao.getAll())
+        }
+        return all
+    }
+
+    fun getById(id: Int): LiveData<Movie> {
+        val result = MutableLiveData(defaultMovie)
+        GlobalScope.launch {
+            delay(3000)
+            result.postValue(movieDao.getById(id))
+        }
+        return result
     }
 }

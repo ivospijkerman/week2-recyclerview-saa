@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.movierecycler.databinding.FragmentDetailBinding
 
 private const val ARG_MOVIE_ID = "param1"
@@ -16,7 +18,12 @@ private const val ARG_MOVIE_ID = "param1"
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment() {
-    private val repository by lazy { MovieRepository(requireContext()) }
+
+    private val movieDetailVM: MovieDetailVM by viewModels {
+        val application = requireActivity().application as MyApplication
+        val movieRepository = application.movieRepository
+        MovieDetailVMFactory(movieRepository, movieId!!)
+    }
 
     private var movieId: Int? = null
     private lateinit var binding: FragmentDetailBinding
@@ -35,8 +42,12 @@ class DetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
 
-        val id: Int = movieId ?: throw IllegalArgumentException()
-        binding.movie = repository.getById(id)
+        val dataObserver = Observer<Movie> {
+            binding.movie = movieDetailVM.movie.value
+        }
+        movieDetailVM.movie.observe(requireActivity(), dataObserver)
+
+        binding.movie = movieDetailVM.movie.value
 
         return binding.root
     }

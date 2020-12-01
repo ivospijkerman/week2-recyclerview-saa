@@ -1,8 +1,25 @@
 package com.example.movierecycler
 
-import android.content.ContentValues
-import android.content.Context
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 
+@Dao
+interface MovieDao {
+
+    @Query("SELECT * FROM movie ORDER BY releaseYear")
+    suspend fun getAll(): List<Movie>
+
+    @Query("SELECT * FROM movie WHERE id = :id LIMIT 1")
+    suspend fun getById(id: Int): Movie?
+
+    @Insert
+    suspend fun insert(movie: Movie)
+
+    @Query("DELETE FROM movie")
+    suspend fun deleteAll()
+}
+/*
 class MovieDao(context: Context) {
     private val dbHelper = MySQLiteOpenHelper(context)
 
@@ -31,3 +48,4 @@ class MovieDao(context: Context) {
         dbHelper.writableDatabase.insert(MOVIE_TABLE_NAME, null, values)
     }
 }
+*/
