@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.movierecycler.R
 import com.example.movierecycler.databinding.ActivityMainBinding
+import com.example.movierecycler.ui.add.AddFragment
 import com.example.movierecycler.ui.detail.DetailFragment
 import com.example.movierecycler.ui.list.ListFragment
 
@@ -28,6 +29,14 @@ class MainActivity : AppCompatActivity() {
         val detailFragment = DetailFragment.newInstance(movieId)
         supportFragmentManager.beginTransaction()
             .replace(R.id.activeFragment, detailFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun showAdd() {
+        val addFragment = AddFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.activeFragment, addFragment)
             .addToBackStack(null)
             .commit()
     }

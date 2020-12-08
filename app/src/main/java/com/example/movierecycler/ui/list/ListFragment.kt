@@ -34,10 +34,16 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
 
-        val adapter = MovieRecyclerViewAdapter(activity as MainActivity, movieListVM.allMovies)
+        val mainActivity = activity as MainActivity
+
+        val adapter = MovieRecyclerViewAdapter(mainActivity, movieListVM.allMovies)
         binding.movieRecycler.setHasFixedSize(true)
         binding.movieRecycler.layoutManager = LinearLayoutManager(activity)
         binding.movieRecycler.adapter = adapter
+
+        binding.addButton.setOnClickListener {
+            mainActivity.showAdd()
+        }
 
         return binding.root
     }

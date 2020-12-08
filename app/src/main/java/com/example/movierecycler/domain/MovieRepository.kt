@@ -27,4 +27,11 @@ class MovieRepository(private val movieDao: MovieDao) {
         }
         return result
     }
+
+    fun add(movie: Movie) {
+        GlobalScope.launch {
+            movieDao.insert(movie)
+            getAll()
+        }
+    }
 }

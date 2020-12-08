@@ -4,12 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.movierecycler.domain.Movie
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class], version = 3, exportSchema = false)
 abstract class MyRoomDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
@@ -28,6 +29,7 @@ abstract class MyRoomDatabase : RoomDatabase() {
                             MyRoomDatabase::class.java,
                             "myRoomDatabase"
                         ).addCallback(MyRoomDataBasePopulator())
+                            .fallbackToDestructiveMigration()
                             .build()
                         INSTANCE = instance
                     }
@@ -40,8 +42,7 @@ abstract class MyRoomDatabase : RoomDatabase() {
 
     private class MyRoomDataBasePopulator : RoomDatabase.Callback() {
 
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
+        private fun addItems() {
 
             INSTANCE?.let {
                 GlobalScope.launch {
@@ -54,7 +55,16 @@ abstract class MyRoomDatabase : RoomDatabase() {
             }
         }
 
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+
+            addItems()
+        }
+
+        override fun onDestructiveMigration(db: SupportSQLiteDatabase) {
+            super.onDestructiveMigration(db)
+
+            addItems()
+        }
     }
-
-
 }
