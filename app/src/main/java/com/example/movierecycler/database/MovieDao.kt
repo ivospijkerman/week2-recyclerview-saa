@@ -1,8 +1,9 @@
-package com.example.movierecycler
+package com.example.movierecycler.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.movierecycler.domain.Movie
 
 @Dao
 interface MovieDao {

@@ -1,4 +1,4 @@
-package com.example.movierecycler
+package com.example.movierecycler.ui.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.movierecycler.*
 import com.example.movierecycler.databinding.FragmentListBinding
+import com.example.movierecycler.ui.MainActivity
 
 /**
  * A simple [Fragment] subclass.

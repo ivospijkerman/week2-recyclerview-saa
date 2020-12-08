@@ -1,4 +1,4 @@
-package com.example.movierecycler
+package com.example.movierecycler.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.movierecycler.MovieDetailVM
+import com.example.movierecycler.MovieDetailVMFactory
+import com.example.movierecycler.MyApplication
+import com.example.movierecycler.R
 import com.example.movierecycler.databinding.FragmentDetailBinding
+import com.example.movierecycler.domain.Movie
 
 private const val ARG_MOVIE_ID = "param1"
 

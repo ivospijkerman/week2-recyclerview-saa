@@ -6,7 +6,7 @@
 
         <variable
             name="movie"
-            type="com.example.movierecycler.Movie" />
+            type="com.example.movierecycler.domain.Movie" />
     </data>
 
     <LinearLayout

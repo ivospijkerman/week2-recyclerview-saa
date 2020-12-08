@@ -3,6 +3,8 @@ package com.example.movierecycler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.movierecycler.domain.Movie
+import com.example.movierecycler.domain.MovieRepository
 
 class MovieListVM(repository: MovieRepository) : ViewModel() {
     val allMovies: LiveData<List<Movie>> = repository.getAll()

@@ -1,4 +1,4 @@
-package com.example.movierecycler
+package com.example.movierecycler.ui.list
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movierecycler.R
+import com.example.movierecycler.domain.Movie
+import com.example.movierecycler.ui.MainActivity
 
 
 class MovieRecyclerViewAdapter(

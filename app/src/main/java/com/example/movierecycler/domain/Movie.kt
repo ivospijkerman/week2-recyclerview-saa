@@ -1,4 +1,4 @@
-package com.example.movierecycler
+package com.example.movierecycler.domain
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

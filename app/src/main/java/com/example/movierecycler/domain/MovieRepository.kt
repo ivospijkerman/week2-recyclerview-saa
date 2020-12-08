@@ -1,9 +1,10 @@
-package com.example.movierecycler
+package com.example.movierecycler.domain
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.movierecycler.database.MovieDao
+import com.example.movierecycler.domain.Movie
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MovieRepository(private val movieDao: MovieDao) {
@@ -14,7 +15,6 @@ class MovieRepository(private val movieDao: MovieDao) {
 
     fun getAll(): LiveData<List<Movie>> {
         GlobalScope.launch {
-            delay(3000)
             all.postValue(movieDao.getAll())
         }
         return all
@@ -23,7 +23,6 @@ class MovieRepository(private val movieDao: MovieDao) {
     fun getById(id: Int): LiveData<Movie> {
         val result = MutableLiveData(defaultMovie)
         GlobalScope.launch {
-            delay(3000)
             result.postValue(movieDao.getById(id))
         }
         return result

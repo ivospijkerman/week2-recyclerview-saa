@@ -1,10 +1,12 @@
-package com.example.movierecycler
+package com.example.movierecycler.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
+import com.example.movierecycler.R
 import com.example.movierecycler.databinding.ActivityMainBinding
+import com.example.movierecycler.ui.detail.DetailFragment
+import com.example.movierecycler.ui.list.ListFragment
 
 class MainActivity : AppCompatActivity() {
 
