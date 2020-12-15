@@ -8,7 +8,7 @@ import com.example.movierecycler.domain.MovieRepository
 
 class MovieDetailVM(
     repository: MovieRepository,
-    movieId: Int
+    movieId: String
 ) : ViewModel() {
     val movie: LiveData<Movie> = repository.getById(movieId)
 
@@ -16,7 +16,7 @@ class MovieDetailVM(
 
 class MovieDetailVMFactory(
     private val repository: MovieRepository,
-    private val movieId: Int
+    private val movieId: String
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         check(modelClass.isAssignableFrom(MovieDetailVM::class.java))

@@ -28,7 +28,7 @@ class MovieRecyclerViewAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val titleText: TextView = view.findViewById(R.id.titleText)
-        var id: Int? = null
+        var id: String? = null
 
         init {
             view.setOnClickListener {

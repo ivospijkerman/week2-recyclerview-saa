@@ -32,13 +32,13 @@ class DetailFragment : Fragment() {
         MovieDetailVMFactory(movieRepository, movieId!!)
     }
 
-    private var movieId: Int? = null
+    private var movieId: String? = null
     private lateinit var binding: FragmentDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            movieId = it.getInt(ARG_MOVIE_ID)
+            movieId = it.getString(ARG_MOVIE_ID)
         }
     }
 
@@ -72,10 +72,10 @@ class DetailFragment : Fragment() {
          * @return A new instance of fragment DetailFragment.
          */
         @JvmStatic
-        fun newInstance(movieId: Int) =
+        fun newInstance(movieId: String) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_MOVIE_ID, movieId)
+                    putString(ARG_MOVIE_ID, movieId)
                 }
             }
     }

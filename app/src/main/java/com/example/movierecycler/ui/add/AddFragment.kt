@@ -22,10 +22,6 @@ class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
     private val movieRepository by lazy { (requireActivity().application as MyApplication).movieRepository }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +34,7 @@ class AddFragment : Fragment() {
                 val newMovie = Movie(
                     title = binding.addTitleInput.text.toString(),
                     director = binding.addDirectorInput.text.toString(),
-                    releaseYear = binding.addReleaseInput.text.toString().toInt()
+                    releaseYear = binding.addReleaseInput.text.toString().toLong()
                 )
                 movieRepository.add(newMovie)
                 requireActivity().supportFragmentManager.popBackStack()

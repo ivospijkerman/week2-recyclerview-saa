@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showDetail(movieId: Int) {
+    fun showDetail(movieId: String) {
 //        binding.activeFragment.removeAllViews()
 
         val detailFragment = DetailFragment.newInstance(movieId)

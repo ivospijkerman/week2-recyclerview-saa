@@ -1,10 +1,11 @@
 package com.example.movierecycler
 
-import android.app.Application
-import com.example.movierecycler.database.MyRoomDatabase
+import androidx.multidex.MultiDexApplication
 import com.example.movierecycler.domain.MovieRepository
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-class MyApplication : Application() {
-    val database by lazy {  MyRoomDatabase.getInstance(this) }
-    val movieRepository by lazy { MovieRepository(database.movieDao()) }
+class MyApplication : MultiDexApplication() {
+    private val firestore by lazy { Firebase.firestore }
+    val movieRepository by lazy { MovieRepository(firestore.collection("movies")) }
 }
