@@ -3,7 +3,6 @@ package com.example.movierecycler.domain
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.movierecycler.database.MovieDao
-import com.example.movierecycler.domain.Movie
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -31,6 +30,13 @@ class MovieRepository(private val movieDao: MovieDao) {
     fun add(movie: Movie) {
         GlobalScope.launch {
             movieDao.insert(movie)
+            getAll()
+        }
+    }
+
+    fun remove(movie: Movie) {
+        GlobalScope.launch {
+            movieDao.delete(movie)
             getAll()
         }
     }

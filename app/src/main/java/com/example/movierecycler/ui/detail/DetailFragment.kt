@@ -14,6 +14,7 @@ import com.example.movierecycler.MyApplication
 import com.example.movierecycler.R
 import com.example.movierecycler.databinding.FragmentDetailBinding
 import com.example.movierecycler.domain.Movie
+import com.example.movierecycler.ui.MainActivity
 
 private const val ARG_MOVIE_ID = "param1"
 
@@ -23,10 +24,9 @@ private const val ARG_MOVIE_ID = "param1"
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment() {
+    private val movieRepository by lazy { (requireActivity().application as MyApplication).movieRepository }
 
     private val movieDetailVM: MovieDetailVM by viewModels {
-        val application = requireActivity().application as MyApplication
-        val movieRepository = application.movieRepository
         MovieDetailVMFactory(movieRepository, movieId!!)
     }
 
@@ -51,6 +51,11 @@ class DetailFragment : Fragment() {
             binding.movie = movieDetailVM.movie.value
         }
         movieDetailVM.movie.observe(requireActivity(), dataObserver)
+
+        binding.deleteButton.setOnClickListener {
+            movieRepository.remove(binding.movie!!)
+            requireActivity().supportFragmentManager.popBackStack()
+        }
 
         binding.movie = movieDetailVM.movie.value
 

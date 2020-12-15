@@ -20,6 +20,9 @@ interface MovieDao {
 
     @Query("DELETE FROM movie")
     suspend fun deleteAll()
+
+    @Delete
+    suspend fun delete(movie: Movie)
 }
 /*
 class MovieDao(context: Context) {
