@@ -15,6 +15,8 @@ import com.example.movierecycler.R
 import com.example.movierecycler.databinding.FragmentDetailBinding
 import com.example.movierecycler.domain.Movie
 import com.example.movierecycler.ui.MainActivity
+import com.google.firebase.auth.FirebaseAuth
+import java.lang.IllegalStateException
 
 private const val ARG_MOVIE_ID = "param1"
 

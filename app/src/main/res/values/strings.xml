@@ -6,4 +6,5 @@
     <string name="director_hint">Director</string>
     <string name="release_hint">Year of Release</string>
     <string name="submit_text">Submit Movie</string>
+    <string name="sign_out_text">Sign out</string>
 </resources>

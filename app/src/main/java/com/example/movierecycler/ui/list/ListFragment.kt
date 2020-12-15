@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movierecycler.*
 import com.example.movierecycler.databinding.FragmentListBinding
 import com.example.movierecycler.ui.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * A simple [Fragment] subclass.
@@ -43,6 +44,11 @@ class ListFragment : Fragment() {
 
         binding.addButton.setOnClickListener {
             mainActivity.showAdd()
+        }
+
+        binding.signOutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            requireActivity().recreate()
         }
 
         return binding.root
