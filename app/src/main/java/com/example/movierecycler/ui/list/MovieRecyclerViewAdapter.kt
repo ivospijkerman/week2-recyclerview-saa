@@ -35,8 +35,7 @@ class MovieRecyclerViewAdapter(
             view.setOnClickListener {
                 val id = id ?: throw IllegalStateException()
                 val action = ListFragmentDirections.actionListFragmentToDetailFragment(id)
-                // TODO check if `it` is also possible
-                view.findNavController().navigate(action)
+                it.findNavController().navigate(action)
             }
         }
     }

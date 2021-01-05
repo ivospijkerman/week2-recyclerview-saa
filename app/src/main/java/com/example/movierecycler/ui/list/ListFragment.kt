@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.movierecycler.*
+import com.example.movierecycler.MovieListVM
+import com.example.movierecycler.MovieListVMFactory
+import com.example.movierecycler.MyApplication
+import com.example.movierecycler.R
 import com.example.movierecycler.databinding.FragmentListBinding
 import com.example.movierecycler.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
  * create an instance of this fragment.
  */
 class ListFragment : Fragment() {
-    private val movieListVM: MovieListVM by viewModels {
+    private val movieListVM: MovieListVM by navGraphViewModels(R.id.listFragment) {
         val application = requireActivity().application as MyApplication
         val movieRepository = application.movieRepository
         MovieListVMFactory(movieRepository)

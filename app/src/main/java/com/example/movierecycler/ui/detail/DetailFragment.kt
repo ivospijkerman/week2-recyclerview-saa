@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import com.example.movierecycler.MovieDetailVM
 import com.example.movierecycler.MovieDetailVMFactory
 import com.example.movierecycler.MyApplication
@@ -24,7 +24,7 @@ class DetailFragment : Fragment() {
     private val movieRepository by lazy { (requireActivity().application as MyApplication).movieRepository }
     private val args: DetailFragmentArgs by navArgs()
 
-    private val movieDetailVM: MovieDetailVM by viewModels {
+    private val movieDetailVM: MovieDetailVM by navGraphViewModels(R.id.detailFragment) {
         MovieDetailVMFactory(movieRepository, movieId!!)
     }
 
