@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.movierecycler.MyApplication
 import com.example.movierecycler.R
 import com.example.movierecycler.databinding.FragmentAddBinding
@@ -37,7 +38,8 @@ class AddFragment : Fragment() {
                     releaseYear = binding.addReleaseInput.text.toString().toLong()
                 )
                 movieRepository.add(newMovie)
-                requireActivity().supportFragmentManager.popBackStack()
+
+                findNavController().navigateUp()
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_LONG).show()

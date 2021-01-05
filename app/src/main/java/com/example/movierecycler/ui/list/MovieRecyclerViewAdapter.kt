@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movierecycler.R
 import com.example.movierecycler.domain.Movie
@@ -33,7 +34,9 @@ class MovieRecyclerViewAdapter(
         init {
             view.setOnClickListener {
                 val id = id ?: throw IllegalStateException()
-                activity.showDetail(id)
+                val action = ListFragmentDirections.actionListFragmentToDetailFragment(id)
+                // TODO check if `it` is also possible
+                view.findNavController().navigate(action)
             }
         }
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movierecycler.*
 import com.example.movierecycler.databinding.FragmentListBinding
@@ -43,7 +44,8 @@ class ListFragment : Fragment() {
         binding.movieRecycler.adapter = adapter
 
         binding.addButton.setOnClickListener {
-            mainActivity.showAdd()
+            val action = ListFragmentDirections.actionListFragmentToAddFragment()
+            findNavController().navigate(action)
         }
 
         binding.signOutButton.setOnClickListener {

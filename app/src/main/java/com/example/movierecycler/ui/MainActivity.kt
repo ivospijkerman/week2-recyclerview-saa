@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity() {
                     .build(), RC_SIGN_IN
             )
 
-        } else {
-            val listFragment = ListFragment.newInstance()
-            supportFragmentManager.beginTransaction()
-                .add(R.id.activeFragment, listFragment)
-                .commit()
         }
     }
 
@@ -53,23 +48,5 @@ class MainActivity : AppCompatActivity() {
                 finishAffinity()
             }
         }
-    }
-
-    fun showDetail(movieId: String) {
-//        binding.activeFragment.removeAllViews()
-
-        val detailFragment = DetailFragment.newInstance(movieId)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.activeFragment, detailFragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
-    fun showAdd() {
-        val addFragment = AddFragment.newInstance()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.activeFragment, addFragment)
-            .addToBackStack(null)
-            .commit()
     }
 }
