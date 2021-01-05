@@ -6,8 +6,6 @@ import com.example.movierecycler.database.toData
 import com.example.movierecycler.database.toMovie
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MovieRepository(private val movieCollection: CollectionReference) {
     private val defaultMovie = Movie("Loading", "Loading...", "One moment please", -1)
@@ -41,11 +39,9 @@ class MovieRepository(private val movieCollection: CollectionReference) {
     }
 
     fun remove(movie: Movie) {
-        GlobalScope.launch {
-            movieCollection.document(movie.id).delete()
-                .addOnSuccessListener {
-                    getAll()
-                }
-        }
+        movieCollection.document(movie.id).delete()
+            .addOnSuccessListener {
+                getAll()
+            }
     }
 }
